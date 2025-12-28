@@ -19,7 +19,7 @@ Implementation of LOD, that makes the star HD when zoomed in.
 | :--- | :--- |
 |`Type Word`| Set seed for 3D prcedural|
 |`Enter`|Start fractal growth animation|
-|`s`|Toggle zooming to star (Cinematic)|
+|`Alt + s`|Toggle zooming to star (Cinematic)|
 |`Arrow Keys`|Set the orientation of the tree model|
 |`ESC`|Exit the program|
 

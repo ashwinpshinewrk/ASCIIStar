@@ -12,7 +12,7 @@ use crossterm::{
 };
 use ratatui::{
     Terminal,
-    crossterm::event::{self, Event, KeyCode},
+    crossterm::event::{self, Event, KeyCode, KeyModifiers},
     prelude::CrosstermBackend,
 };
 
@@ -90,6 +90,7 @@ fn run_app<B: ratatui::backend::Backend>(
 
         if event::poll(Duration::from_millis(16))? {
             if let Event::Key(key) = event::read()? {
+                let is_alt = key.modifiers.contains(KeyModifiers::ALT);
                 match key.code {
                     KeyCode::Esc => return Ok(()),
                     KeyCode::Enter => {
@@ -97,7 +98,7 @@ fn run_app<B: ratatui::backend::Backend>(
                         app.anim_progress = 0.0;
                         app.start_time = Instant::now();
                     }
-                    KeyCode::Char('s') | KeyCode::Char('S') => {
+                    KeyCode::Char('s') | KeyCode::Char('S') if is_alt => {
                         if app.anim_progress >= 0.9 {
                             app.is_zooming = !app.is_zooming;
                         }
@@ -106,7 +107,7 @@ fn run_app<B: ratatui::backend::Backend>(
                         app.input.pop();
                         app.is_growing = false;
                     }
-                    KeyCode::Char(c) => {
+                    KeyCode::Char(c) if !is_alt => {
                         app.input.push(c);
                         app.is_growing = false;
                     }

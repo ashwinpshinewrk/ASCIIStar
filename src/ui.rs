@@ -164,7 +164,7 @@ pub fn render(f: &mut Frame, app: &mut App, time: f32) {
     let current_y_off = -3.2 * app.zoom_progress;
     let rotation_mat = Mat4::from_euler(glam::EulerRot::XYZ, app.angle_x, app.angle_y, 0.0);
     let chars: Vec<char> = app.input.chars().collect();
-
+    if chars.is_empty() {return ;}
     let mut projected: Vec<(f32, f32, f32, Color, char, bool, bool, bool, bool)> = scene_ponts
         .into_iter()
         .filter(|p| p.birth_threshold <= app.anim_progress)
@@ -277,7 +277,7 @@ pub fn render(f: &mut Frame, app: &mut App, time: f32) {
     }
 
     let foot = Paragraph::new(format!(
-        "WORD : {} | s : Zoom Star | Enter : Grow ",
+        "WORD : {} | Alt + s : Zoom Star | Enter : Grow ",
         app.input
     ))
     .block(
