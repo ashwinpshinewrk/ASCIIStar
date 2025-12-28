@@ -25,10 +25,10 @@ pub fn render(f: &mut Frame, app: &mut App, time: f32) {
         for r_l in 1..6 {
             let r = (1.1 - t * 0.3) * (r_l as f32 / 6.0);
             for i in 0..30 {
-                let a = (i as f32 / 30.0) * 6.28;
+                let a = (i as f32 / 35.0) * 6.28;
                 scene_ponts.push(Point3D {
                     pos: Vec3::new(a.cos() * r, -6.0 + t * 3.0, a.sin() * r),
-                    color: Color::Rgb(85, 45, 15),
+                    color: Color::Rgb(95, 55, 30),
                     is_bright: false,
                     is_ornament: false,
                     ornament_id: 0,
@@ -45,8 +45,8 @@ pub fn render(f: &mut Frame, app: &mut App, time: f32) {
 
     for tier in (0..4).rev() {
         let t_off = (3 - tier) as f32 * 0.15;
-        let y_start = 3.0 - (tier as f32 * 1.4);
-        let max_r = 1.4 + (tier as f32 * 1.0);
+        let y_start = 3.0 - (tier as f32 * 1.6);
+        let max_r = 1.4 + (tier as f32 * 1.2);
 
         for s in 0..28 {
             let t = s as f32 / 28.0;
@@ -54,14 +54,15 @@ pub fn render(f: &mut Frame, app: &mut App, time: f32) {
             let sr = max_r * t;
             let birth = 0.1 + t_off + (t + 0.1);
 
-            for r_idx in 1..=7 {
-                let r = sr * (r_idx as f32 / 7.0);
-                for p in 0..(r * 50.0).max(15.0) as usize {
+            for r_idx in 1..=8 {
+                let r = sr * (r_idx as f32 / 8.0);
+                let num_p = (r * 50.0).max(15.0) as usize;
+                for p in 0..num_p{
                     let a = (p as f32 / 10.0) * 6.28;
                     let is_orn = rng.next_f32() > 0.94;
                     scene_ponts.push(Point3D {
                         pos: Vec3::new(a.cos() * r, y, a.sin() * r),
-                        color: Color::Rgb(0, (60 + tier * 40 + s * 2).min(255) as u8, 20),
+                        color: Color::Rgb(0, (70 + tier * 40 + s * 2).min(255) as u8, 20),
                         is_bright: is_orn,
                         is_ornament: is_orn,
                         ornament_id: p + s,
@@ -231,7 +232,7 @@ pub fn render(f: &mut Frame, app: &mut App, time: f32) {
 
     //RENDERRRRR
     for (px, py, pz, color, c, is_br, is_st, is_sn, is_gr) in projected {
-        let x = (area.x as f32 + area.width as f32 / 2.0) + (px * current_scale * 3.2);
+        let x = (area.x as f32 + area.width as f32 / 2.0) + (px * current_scale * 4.8);
         let y = (area.y as f32 + area.height as f32 / 2.0) - (py * current_scale);
 
         if x >= area.left() as f32
