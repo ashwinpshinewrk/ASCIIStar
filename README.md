@@ -52,4 +52,9 @@ src/
 ## Media
 
 
+https://github.com/user-attachments/assets/41719d66-37be-4aba-b4bc-be82aa2c4031
+
+
+> Note that the quality of the video is low. Please checkout the [release page](https://github.com/ashwinpshinewrk/ASCIIStar/releases).
+
 **Created for MAKE A STAR 2025 Challenge.**
