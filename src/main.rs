@@ -105,11 +105,9 @@ fn run_app<B: ratatui::backend::Backend>(
                     }
                     KeyCode::Backspace => {
                         app.input.pop();
-                        app.is_growing = false;
                     }
                     KeyCode::Char(c) if !is_alt => {
                         app.input.push(c);
-                        app.is_growing = false;
                     }
                     KeyCode::Left => {
                         app.angle_y -= 0.15;
